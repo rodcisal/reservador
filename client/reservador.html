@@ -1,0 +1,26 @@
+<head>
+  <title>Reserva tu turno en PES.</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    {{> begin}}
+  </div>
+</body>
+
+<template name="begin">
+ {{#unless currentUser}}
+  <div class="firstMessage">
+    <h1> Ingresa con Facebook para comenzar</h1>
+      {{> loginButtons}}
+  </div>
+  {{/unless}}
+  {{#if currentUser}}
+    <div class="logged">
+      {{> loginButtons}}
+      {{> main}}
+    </div>
+  {{/if}}
+</template>
+
+
