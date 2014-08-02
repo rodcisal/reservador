@@ -17,8 +17,13 @@
   {{/unless}}
   {{#if currentUser}}
     <div class="logged">
-      {{> loginButtons}}
-      {{> main}}
+      <div class="user-block">
+        <img src="{{userImage}}" class="user-image">
+        {{> loginButtons}}
+      </div>
+      <div class="main-content">
+        {{> main}}
+      </div>
     </div>
   {{/if}}
 </template>

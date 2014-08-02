@@ -1,3 +1,17 @@
 <template name="main">
   <h1> Selecciona contricante </h1>
+  <div class="players-list">
+    {{#each users}}
+      <div class="user">
+        <span class="userName">{{ profile.name}}</span>
+        <img src="{{facebookImageUrl services.facebook.id}}">
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="games-list">
+  {{#each gamesList}}
+    {{date}}
+  {{/each}}
+  </div>
 </template>
