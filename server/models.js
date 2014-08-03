@@ -10,10 +10,12 @@ Meteor.publish("gamesList", function(){
 
 
 Meteor.methods({
-  addMatch: function() {
+  addMatch: function(firstPlayer, firstPlayerId, secondPlayer, secondPlayerId, state) {
     Games.insert({
       "firstPlayer": firstPlayer,
+      "firstPlayerId": firstPlayerId,
       "secondPlayer": secondPlayer,
+      "secondPlayerId": secondPlayerId,
       "date": new Date(),
       "state": state
     });

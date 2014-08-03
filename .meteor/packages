@@ -8,3 +8,6 @@ insecure
 stylus
 accounts-facebook
 accounts-ui
+moment
+livestamp
+jquery-scrollTo

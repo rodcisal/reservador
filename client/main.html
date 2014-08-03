@@ -1,17 +1,41 @@
 <template name="main">
-  <h1> Selecciona contricante </h1>
-  <div class="players-list">
-    {{#each users}}
-      <div class="user">
-        <span class="userName">{{ profile.name}}</span>
-        <img src="{{facebookImageUrl services.facebook.id}}">
-      </div>
-    {{/each}}
+  <div class="first-layer">
+    <h1> Selecciona contricante </h1>
+    <div class="players-list">
+      {{#each users}}
+        <div class="user">
+          <span class="userName">{{ profile.name}}</span>
+          <img src="{{facebookImageUrl services.facebook.id "large"}}">
+          <a href="#" class="addMatch"></a>
+          <a href="#" class="addMatchConfirmation" style="display: none;"> Agregar Partido </a>
+        </div>
+      {{/each}}
+    </div>
   </div>
 
-  <div class="games-list">
-  {{#each gamesList}}
-    {{date}}
-  {{/each}}
+  <div class="second-layer">
+    <div class="games-list">
+    {{#each gamesList}}
+      <div class="game-unit">
+        <div class="firstPlayer">
+          <span class="player-name"> {{firstPlayer}} </span>
+          <span class="player-pic">
+            <img src="{{facebookImageUrl firstPlayerId "small"}}">
+          </span>
+        </div>
+        <div class="versus"> 
+          <div class="versus-vs">VS</div>
+          <div class="timeAgo" data-livestamp="{{date}}"> Hace 2 minutos.</div> 
+          <div class="gameOver"> <a href="#" class="endGame">Terminar </a></div>
+        </div>
+        <div class="secondPlayer">
+          <span class="player-name">{{secondPlayer}} </span>
+          <span class="player-pic">
+            <img src="{{facebookImageUrl secondPlayerId "small"}}">
+          </span>
+        </div>
+      </div>
+    {{/each}}
+    </div>
   </div>
 </template>

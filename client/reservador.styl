@@ -52,6 +52,8 @@ body {
   vertical-align: top;
   text-align: center;
   cursor: pointer;
+  padding: 15px;
+  position: relative;
 
   img {
     width: 90px;
@@ -68,4 +70,69 @@ body {
 
 .games-list {
   margin-top: 100px;
+}
+
+.addMatch {
+  display: block;
+  height:100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.game-unit {
+  margin: 20px 0;
+  height: 100px;
+
+  &:hover {
+    background: #f8f8f8;
+  }
+}
+
+.firstPlayer, .versus, .secondPlayer {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.player-name, .player-pic {
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.player-name {
+  font-size: 30px;
+  padding-top: 15px;
+  padding-right: 15px;
+  width: 270px;
+  text-align: center;
+  line-height: 68px;
+}
+
+.versus {
+  padding-top: 15px;
+  font-size: 25px;
+  margin: 0 50px;
+}
+
+.timeAgo {
+  color: #888888;
+  font-size: 17px;
+}
+
+.player-pic {
+  img {
+    max-width: 50px;
+    padding-top: 17px;
+  }
+}
+
+.endGame {
+  font-size: 13px;
+}
+
+.first-layer {
+  height: 636px;
 }
