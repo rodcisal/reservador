@@ -5,7 +5,7 @@ Meteor.publish("users", function(){
 });
 
 Meteor.publish("gamesList", function(){
-  return Games.find();
+  return Games.find({}, {sort: {date: -1 }, limit: 10 });
 });
 
 
@@ -17,8 +17,11 @@ Meteor.methods({
       "secondPlayer": secondPlayer,
       "secondPlayerId": secondPlayerId,
       "date": new Date(),
-      "state": state
+      "state": true
     });
+  },
+  endMatch: function(gameId){
+    Games.update(gameId, {$set: {state: false}});
   }
 });
 

@@ -30,9 +30,9 @@ Template.main.events({
     var state = "activo";
     Meteor.call("addMatch", firstPlayer, firstPlayerId, secondPlayer, secondPlayerId, state);
     $.scrollTo({
-      top: 700, left: 0
+      top: 750, left: 0
     },{
-      duration: 1200
+      duration: 1000
     });
   },
   "click .addMatch" : function(e) {
@@ -43,5 +43,10 @@ Template.main.events({
     $this.css('display', 'none');
     $this.parent('.user').css("background", "yellow");
     $this.siblings(".addMatchConfirmation").css("display","block");
+  },
+  "click .endGame": function(e) {
+    e.preventDefault();
+    var gameId = this._id;
+    Meteor.call('endMatch', gameId);
   }
 })

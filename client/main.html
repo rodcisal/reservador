@@ -25,8 +25,12 @@
         </div>
         <div class="versus"> 
           <div class="versus-vs">VS</div>
-          <div class="timeAgo" data-livestamp="{{date}}"> Hace 2 minutos.</div> 
-          <div class="gameOver"> <a href="#" class="endGame">Terminar </a></div>
+          <div class="timeAgo" data-livestamp="{{date}}"> Hace 2 minutos.</div>
+          {{#if state}} 
+            <div class="gameOver"> <a href="#" class="endGame">Terminar</a></div>
+          {{else}}
+            <span class="finished">Terminado</span>
+          {{/if}}
         </div>
         <div class="secondPlayer">
           <span class="player-name">{{secondPlayer}} </span>
