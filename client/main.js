@@ -15,7 +15,7 @@ Meteor.startup(function() {
 Template.main.users = function() {
   return Meteor.users.find();
 }
-  
+
 Template.main.gamesList = function() {
   return Games.find({},{sort: {date: -1}});
 }
@@ -32,14 +32,20 @@ Template.main.events({
     $.scrollTo($('.firstPlayer:first-child'), 1000);
   },
   "click .addMatch" : function(e) {
-    e.preventDefault();
-    Session.set("firstPlayerId", Meteor.user().services.facebook.id);
-    Session.set("selectedPlayer", this.profile.name);
-    Session.set("selectedPlayerId", this.services.facebook.id);
-    var $this = $(e.target);
-    $this.css('display', 'none');
-    $this.parent().addClass('background-color-yellow');
-    $this.siblings(".addMatchConfirmation").css("display","block");
+    //store userName on Session
+    Session.set('myNameis', Meteor.user().profile.name);
+    //prevent multiple player selection  & select myself as oponent
+    console.log(this.profile.name);
+    if (!Session.get('selectedPlayer') && Session.get('myNameis') !== this.profile.name){
+      e.preventDefault();
+      Session.set("firstPlayerId", Meteor.user().services.facebook.id);
+      Session.set("selectedPlayer", this.profile.name);
+      Session.set("selectedPlayerId", this.services.facebook.id);
+      var $this = $(e.target);
+      $this.css('display', 'none');
+      $this.parent().addClass('background-color-yellow');
+      $this.siblings(".addMatchConfirmation").css("display","block");
+    }
   },
   "click .endGame": function(e) {
     e.preventDefault();
