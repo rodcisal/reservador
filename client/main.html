@@ -1,6 +1,22 @@
 <template name="main">
   <div class="first-layer">
-    <h1> SELECCIONA OPONENTE </h1>
+    <div class="head">
+      {{#if gameModeDouble}}
+        <h1> SELECCIONA  <span class="partner">COMPAÑERO</span> </h1>
+      {{else}}
+        <h1> SELECCIONA OPONENTE </h1>
+      {{/if}}
+      {{#unless gameModeDouble}}
+        <a href="#" class="coupleMode"> Jugar en pareja </a>
+      {{/unless}}
+      {{#if gameModeDouble}}
+        <a href="#" class="singleMode">Jugar Single </a>
+      {{/if}}
+      {{#if partnerSelected}}
+        <h2 class="pickRivals"> Seleccionar rivales </h2>
+      {{/if}}
+    </div>
+
     <div class="players-list">
       {{#each users}}
         <div class="user">
@@ -23,10 +39,10 @@
             <img src="{{facebookImageUrl firstPlayerId "small"}}">
           </span>
         </div>
-        <div class="versus"> 
+        <div class="versus">
           <div class="versus-vs">VS</div>
           <div class="timeAgo" data-livestamp="{{date}}"> Hace 2 minutos.</div>
-          {{#if state}} 
+          {{#if state}}
             <div class="gameOver"> <a href="#" class="endGame">Terminar</a></div>
           {{else}}
             <span class="finished">Terminado</span>
