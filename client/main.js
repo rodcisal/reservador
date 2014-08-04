@@ -32,12 +32,12 @@ Template.main.events({
     $.scrollTo($('.firstPlayer:first-child'), 1000);
   },
   "click .addMatch" : function(e) {
+    e.preventDefault();
+    console.log('.addMatch');
     //store userName on Session
     Session.set('myNameis', Meteor.user().profile.name);
     //prevent multiple player selection  & select myself as oponent
-    console.log(this.profile.name);
     if (!Session.get('selectedPlayer') && Session.get('myNameis') !== this.profile.name){
-      e.preventDefault();
       Session.set("firstPlayerId", Meteor.user().services.facebook.id);
       Session.set("selectedPlayer", this.profile.name);
       Session.set("selectedPlayerId", this.services.facebook.id);
