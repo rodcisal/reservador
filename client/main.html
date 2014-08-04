@@ -1,13 +1,13 @@
 <template name="main">
   <div class="first-layer">
-    <h1> Selecciona contricante </h1>
+    <h1> SELECCIONA OPONENTE </h1>
     <div class="players-list">
       {{#each users}}
         <div class="user">
           <span class="userName">{{ profile.name}}</span>
           <img src="{{facebookImageUrl services.facebook.id "large"}}">
           <a href="#" class="addMatch"></a>
-          <a href="#" class="addMatchConfirmation" style="display: none;"> Agregar Partido </a>
+          <a href="#" class="addMatchConfirmation" style="display: none;"> RESERVAR </a>
         </div>
       {{/each}}
     </div>

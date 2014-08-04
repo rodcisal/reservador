@@ -29,19 +29,16 @@ Template.main.events({
     var secondPlayerId = Session.get('selectedPlayerId');
     var state = "activo";
     Meteor.call("addMatch", firstPlayer, firstPlayerId, secondPlayer, secondPlayerId, state);
-    $.scrollTo({
-      top: 750, left: 0
-    },{
-      duration: 1000
-    });
+    $.scrollTo($('.firstPlayer:first-child'), 1000);
   },
   "click .addMatch" : function(e) {
+    e.preventDefault();
     Session.set("firstPlayerId", Meteor.user().services.facebook.id);
     Session.set("selectedPlayer", this.profile.name);
     Session.set("selectedPlayerId", this.services.facebook.id);
     var $this = $(e.target);
     $this.css('display', 'none');
-    $this.parent('.user').css("background", "yellow");
+    $this.parent().addClass('background-color-yellow');
     $this.siblings(".addMatchConfirmation").css("display","block");
   },
   "click .endGame": function(e) {
