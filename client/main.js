@@ -34,6 +34,11 @@ Template.main.partnerSelected = function() {
   }
 }
 
+Template.main.rendered = function() {
+  Session.setDefault('firstPlayer', Meteor.user().profile.name);
+  Session.setDefault('firstPlayerId', Meteor.user().services.facebook.id);
+}
+
 //functions
 function cleanUser () {
   Session.set('selectedPlayer', undefined);
@@ -44,25 +49,24 @@ function cleanUser () {
 Template.main.events({
   "click .addMatchConfirmation": function(e){
     e.preventDefault();
-    var firstPlayer = Meteor.user().profile.name;
+    var firstPlayer = Session.get('firstPlayer');
     var firstPlayerId = Session.get('firstPlayerId');
     var secondPlayer = Session.get("selectedPlayer");
     var secondPlayerId = Session.get('selectedPlayerId');
-    var state = "activo";
-    Meteor.call("addMatch", firstPlayer, firstPlayerId, secondPlayer, secondPlayerId, state);
+    Meteor.call("addSingleMatch", firstPlayer, firstPlayerId, secondPlayer, secondPlayerId);
     $.scrollTo($('.firstPlayer:first-child'), 1000);
   },
   "click .addMatch" : function(e) {
     e.preventDefault();
     var $this = $(e.target);
+    Session.set("firstPlayerId", Meteor.user().services.facebook.id);
     //store userName on Session
     Session.set('myNameis', Meteor.user().profile.name);
 
     // SINGLE MODE
     if (Session.get('gameMode') === 'single') {
       //prevent multiple player selection  & select myself as oponent
-      if (!Session.get('selectedPlayer') ){
-        Session.set("firstPlayerId", Meteor.user().services.facebook.id);
+      if (!Session.get('selectedPlayer') ){  
         Session.set("selectedPlayer", this.profile.name);
         Session.set("selectedPlayerId", this.services.facebook.id);
         $this.css('display', 'none');
@@ -75,23 +79,30 @@ Template.main.events({
     if (Session.get('gameMode') === 'double') {
 
       if ( !Session.get('selectedPlayer' ) ) {
+        //select partner
         if ( Session.get('partnerPlayer') ) {
           Session.set('selectedPlayer', this.profile.name);
-          $this.parent().css('background-color', 'yellow');
+          Session.set('selectedPlayerId', this.services.facebook.id)
+          $this.parent().addClass('enemy');
+
         } else {
           Session.set('partnerPlayer', this.profile.name);
-          $this.parent().css('background-color', 'green');
+          Session.set('partnerPlayerId', this.services.facebook.id);
+          $this.parent().addClass('friend');
         }
         return false;
       }
 
       if (Session.get('partnerPlayer') && Session.get('selectedPlayer') ) {
         Session.set('selectedPlayerPartner', this.profile.name);
-        $this.parent().css('background-color', 'pink');
+        Session.set('selectedPlayerPartnerId', this.services.facebook.id);
+        $this.parent().addClass('enemy');
+        $('.addCoupleGame').css('display', 'block');
+        $('.addMatch').hide();
+        $('.singleMode').hide();
         return false;
       }
     }
-
   },
   "click .endGame": function(e) {
     e.preventDefault();
@@ -108,5 +119,18 @@ Template.main.events({
     e.preventDefault();
     //single mode activated
     Session.set('gameMode', 'single');
-  }
+  },
+  "click .addCoupleGame": function(e) {
+    e.preventDefault();
+    var firstPlayer = Meteor.user().profile.name;
+    var firstPlayerId = Session.get('firstPlayerId');
+    var secondPlayer = Session.get("selectedPlayer");
+    var secondPlayerId = Session.get('selectedPlayerId');
+    var partnerPlayer = Session.get('partnerPlayer');
+    var partnerPlayerId = Session.get('partnerPlayerId');
+    var selectedPlayerPartner = Session.get('selectedPlayerPartner');
+    var selectedPlayerPartnerId = Session.get('selectedPlayerPartnerId');
+    Meteor.call("addMatch", firstPlayer, firstPlayerId, partnerPlayer, partnerPlayerId, secondPlayer, secondPlayerId, selectedPlayerPartner, selectedPlayerPartnerId);
+    $.scrollTo($('.firstPlayer:first-child'), 1000);
+  } 
 })

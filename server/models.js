@@ -10,12 +10,26 @@ Meteor.publish("gamesList", function(){
 
 
 Meteor.methods({
-  addMatch: function(firstPlayer, firstPlayerId, secondPlayer, secondPlayerId, state) {
+  addSingleMatch: function(firstPlayer, firstPlayerId, secondPlayer, secondPlayerId) {
+      Games.insert({
+        "firstPlayer": firstPlayer,
+        "firstPlayerId": firstPlayerId,
+        "secondPlayer": secondPlayer,
+        "secondPlayerId": secondPlayerId,
+        "date": new Date(),
+        "state": true
+      });
+  },
+  addMatch: function(firstPlayer, firstPlayerId, partnerPlayer, partnerPlayerId, secondPlayer, secondPlayerId, selectedPlayerPartner, selectedPlayerPartnerId) {
     Games.insert({
       "firstPlayer": firstPlayer,
       "firstPlayerId": firstPlayerId,
+      "partnerPlayer": partnerPlayer,
+      "partnerPlayerId": partnerPlayerId,
       "secondPlayer": secondPlayer,
       "secondPlayerId": secondPlayerId,
+      "selectedPlayerPartner": selectedPlayerPartner,
+      "selectedPlayerPartnerId": selectedPlayerPartnerId,
       "date": new Date(),
       "state": true
     });

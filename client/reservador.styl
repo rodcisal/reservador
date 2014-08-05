@@ -68,6 +68,9 @@ body {
   cursor: pointer;
   position: relative;
   margin-bottom: 10px;
+  min-height: 180px;
+  margin-bottom:10px;
+  border: 3px solid transparent;
 
   img {
     width: 90px;
@@ -180,7 +183,7 @@ body {
 .player-pic {
   img {
     max-width: 50px;
-    padding-top: 20px;
+    display: block;
   }
 }
 
@@ -195,7 +198,7 @@ body {
 .first-layer {
   h1 {
     font-size: 40px;
-    margin-bottom: 0;
+    margin-bottom: 15px;
   }
   a {
 
@@ -215,9 +218,44 @@ body {
 }
 
 .head {
-  margin-bottom: 25px;
+  margin-bottom: 45px;
+  min-height: 100px;
 }
 
 .pickRivals {
   margin: 0;
 }
+
+.addCoupleGame {
+  display: none;
+  z-index: 4;
+}
+
+.friend {
+  background-color: #0BB475;
+  color: #FFFFFF;
+}
+
+.enemy {
+  background-color: #DA3610;
+  color: #FAFAFA;
+}
+
+.button {
+  border: 4px solid #0BB475;
+  text-decoration: none;
+  height: 40px;
+  line-height: 40px;
+  display: block;
+  width: 190px;
+  color: #0BB475;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.gameModeDouble {
+  img {
+    padding-top: 15px;
+  }
+}
+

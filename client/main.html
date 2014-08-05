@@ -2,19 +2,21 @@
   <div class="first-layer">
     <div class="head">
       {{#if gameModeDouble}}
-        <h1> SELECCIONA  <span class="partner">COMPAÑERO</span> </h1>
+        {{#if partnerSelected}}
+          <h1> SELECCIONA RIVALES </h1>
+        {{else}}
+          <h1> SELECCIONA <span class="partner">COMPAÑERO</span></h1>
+        {{/if}}
       {{else}}
         <h1> SELECCIONA OPONENTE </h1>
       {{/if}}
       {{#unless gameModeDouble}}
-        <a href="#" class="coupleMode"> Jugar en pareja </a>
+        <a href="#" class="coupleMode button"> Jugar en pareja </a>
       {{/unless}}
       {{#if gameModeDouble}}
-        <a href="#" class="singleMode">Jugar Single </a>
+        <a href="#" class="singleMode button">Jugar Single </a>
       {{/if}}
-      {{#if partnerSelected}}
-        <h2 class="pickRivals"> Seleccionar rivales </h2>
-      {{/if}}
+      <a href="#" class="addCoupleGame button" style="display: none;"> RESERVAR PARTIDO </a>
     </div>
 
     <div class="players-list">
@@ -34,9 +36,12 @@
     {{#each gamesList}}
       <div class="game-unit">
         <div class="firstPlayer">
-          <span class="player-name"> {{firstPlayer}} </span>
-          <span class="player-pic">
+          <span class="player-name"> {{firstPlayer}} {{partnerPlayer}}</span>
+          <span class="player-pic {{#unless gameModeDouble}} gameModeDouble {{/unless}}">
             <img src="{{facebookImageUrl firstPlayerId "small"}}">
+            {{#if gameModeDouble}}
+              <img src="{{facebookImageUrl partnerPlayerId "small"}}">
+            {{/if}}
           </span>
         </div>
         <div class="versus">
@@ -49,9 +54,12 @@
           {{/if}}
         </div>
         <div class="secondPlayer">
-          <span class="player-name">{{secondPlayer}} </span>
-          <span class="player-pic">
+          <span class="player-name">{{secondPlayer}} {{selectedPlayerPartner}} </span>
+          <span class="player-pic {{#unless gameModeDouble}} gameModeDouble {{/unless}}">
             <img src="{{facebookImageUrl secondPlayerId "small"}}">
+            {{#if gameModeDouble}}
+            <img src="{{facebookImageUrl selectedPlayerPartnerId "small"}}">
+            {{/if}}
           </span>
         </div>
       </div>
