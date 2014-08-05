@@ -34,10 +34,10 @@
   <div class="second-layer">
     <div class="games-list">
     {{#each gamesList}}
-      <div class="game-unit">
+      <div class="game-unit {{#if gameModeDouble}} coupleMode {{/if}} ">
         <div class="firstPlayer">
           <span class="player-name"> {{firstPlayer}} {{partnerPlayer}}</span>
-          <span class="player-pic {{#unless gameModeDouble}} gameModeDouble {{/unless}}">
+          <span class="player-pic {{#if gameModeDouble}} gameModeDouble {{/if}}">
             <img src="{{facebookImageUrl firstPlayerId "small"}}">
             {{#if gameModeDouble}}
               <img src="{{facebookImageUrl partnerPlayerId "small"}}">
@@ -55,7 +55,7 @@
         </div>
         <div class="secondPlayer">
           <span class="player-name">{{secondPlayer}} {{selectedPlayerPartner}} </span>
-          <span class="player-pic {{#unless gameModeDouble}} gameModeDouble {{/unless}}">
+          <span class="player-pic {{#if gameModeDouble}} gameModeDouble {{/if}}">
             <img src="{{facebookImageUrl secondPlayerId "small"}}">
             {{#if gameModeDouble}}
             <img src="{{facebookImageUrl selectedPlayerPartnerId "small"}}">
