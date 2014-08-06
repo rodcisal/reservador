@@ -72,6 +72,7 @@ Template.main.events({
           Session.set("selectedPlayerId", this.services.facebook.id);
           $this.css('display', 'none');
           $this.siblings(".addMatchConfirmation").css("display","block");
+          $this.parent().css('background-color','#FAFAFA');
         }
       }
 
