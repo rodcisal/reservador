@@ -62,47 +62,50 @@ Template.main.events({
     Session.set("firstPlayerId", Meteor.user().services.facebook.id);
     //store userName on Session
     Session.set('myNameis', Meteor.user().profile.name);
-
-    // SINGLE MODE
-    if (Session.get('gameMode') === 'single') {
-      //prevent multiple player selection  & select myself as oponent
-      if (!Session.get('selectedPlayer') ){  
-        Session.set("selectedPlayer", this.profile.name);
-        Session.set("selectedPlayerId", this.services.facebook.id);
-        $this.css('display', 'none');
-        $this.parent().addClass('background-color-yellow');
-        $this.siblings(".addMatchConfirmation").css("display","block");
-      }
-    }
-
-    // DOUBLE MODE
-    if (Session.get('gameMode') === 'double') {
-
-      if ( !Session.get('selectedPlayer' ) ) {
-        //select partner
-        if ( Session.get('partnerPlayer') ) {
-          Session.set('selectedPlayer', this.profile.name);
-          Session.set('selectedPlayerId', this.services.facebook.id)
-          $this.parent().addClass('enemy');
-
-        } else {
-          Session.set('partnerPlayer', this.profile.name);
-          Session.set('partnerPlayerId', this.services.facebook.id);
-          $this.parent().addClass('friend');
+    //prevent self selection
+    if (Session.get('firstPlayerId') !== this.services.facebook.id){
+      // SINGLE MODE
+      if (Session.get('gameMode') === 'single') {
+        //prevent multiple player selection 
+        if (!Session.get('selectedPlayer')){  
+          Session.set("selectedPlayer", this.profile.name);
+          Session.set("selectedPlayerId", this.services.facebook.id);
+          $this.css('display', 'none');
+          $this.siblings(".addMatchConfirmation").css("display","block");
         }
-        return false;
       }
 
-      if (Session.get('partnerPlayer') && Session.get('selectedPlayer') ) {
-        Session.set('selectedPlayerPartner', this.profile.name);
-        Session.set('selectedPlayerPartnerId', this.services.facebook.id);
-        $this.parent().addClass('enemy');
-        $('.addCoupleGame').css('display', 'block');
-        $('.addMatch').hide();
-        $('.singleMode').hide();
-        return false;
+      // DOUBLE MODE
+      if (Session.get('gameMode') === 'double') {
+
+        if ( !Session.get('selectedPlayer' ) ) {
+          //select partner
+          if ( Session.get('partnerPlayer') ) {
+            Session.set('selectedPlayer', this.profile.name);
+            Session.set('selectedPlayerId', this.services.facebook.id)
+            $this.parent().addClass('enemy');
+
+          } else {
+            Session.set('partnerPlayer', this.profile.name);
+            Session.set('partnerPlayerId', this.services.facebook.id);
+            $this.parent().addClass('friend');
+          }
+          return false;
+        }
+
+        if (Session.get('partnerPlayer') && Session.get('selectedPlayer') ) {
+          Session.set('selectedPlayerPartner', this.profile.name);
+          Session.set('selectedPlayerPartnerId', this.services.facebook.id);
+          $this.parent().addClass('enemy');
+          $('.addCoupleGame').css('display', 'block');
+          $('.addMatch').hide();
+          $('.singleMode').hide();
+          return false;
+        }
       }
     }
+
+    
   },
   "click .endGame": function(e) {
     e.preventDefault();

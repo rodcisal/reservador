@@ -17,7 +17,8 @@ Meteor.methods({
         "secondPlayer": secondPlayer,
         "secondPlayerId": secondPlayerId,
         "date": new Date(),
-        "state": true
+        "state": true,
+        "type": "single"
       });
   },
   addMatch: function(firstPlayer, firstPlayerId, partnerPlayer, partnerPlayerId, secondPlayer, secondPlayerId, selectedPlayerPartner, selectedPlayerPartnerId) {
@@ -31,7 +32,8 @@ Meteor.methods({
       "selectedPlayerPartner": selectedPlayerPartner,
       "selectedPlayerPartnerId": selectedPlayerPartnerId,
       "date": new Date(),
-      "state": true
+      "state": true,
+      "type": "double"
     });
   },
   endMatch: function(gameId){

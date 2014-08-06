@@ -11,10 +11,10 @@
         <h1> SELECCIONA OPONENTE </h1>
       {{/if}}
       {{#unless gameModeDouble}}
-        <a href="#" class="coupleMode button"> Jugar en pareja </a>
+        <a href="#" class="coupleMode button"> JUGAR EN PAREJA </a>
       {{/unless}}
       {{#if gameModeDouble}}
-        <a href="#" class="singleMode button">Jugar Single </a>
+        <a href="#" class="singleMode button">JUGAR SINGLE </a>
       {{/if}}
       <a href="#" class="addCoupleGame button" style="display: none;"> RESERVAR PARTIDO </a>
     </div>
@@ -25,7 +25,7 @@
           <span class="userName">{{ profile.name}}</span>
           <img src="{{facebookImageUrl services.facebook.id "large"}}">
           <a href="#" class="addMatch"></a>
-          <a href="#" class="addMatchConfirmation" style="display: none;"> RESERVAR </a>
+          <a href="#" class="addMatchConfirmation button button-single" style="display: none;"> RESERVAR </a>
         </div>
       {{/each}}
     </div>
@@ -34,10 +34,10 @@
   <div class="second-layer">
     <div class="games-list">
     {{#each gamesList}}
-      <div class="game-unit {{#if gameModeDouble}} coupleMode {{/if}} ">
+      <div class="game-unit {{type}} ">
         <div class="firstPlayer">
           <span class="player-name"> {{firstPlayer}} {{partnerPlayer}}</span>
-          <span class="player-pic {{#if gameModeDouble}} gameModeDouble {{/if}}">
+          <span class="player-pic">
             <img src="{{facebookImageUrl firstPlayerId "small"}}">
             {{#if gameModeDouble}}
               <img src="{{facebookImageUrl partnerPlayerId "small"}}">
@@ -55,7 +55,7 @@
         </div>
         <div class="secondPlayer">
           <span class="player-name">{{secondPlayer}} {{selectedPlayerPartner}} </span>
-          <span class="player-pic {{#if gameModeDouble}} gameModeDouble {{/if}}">
+          <span class="player-pic">
             <img src="{{facebookImageUrl secondPlayerId "small"}}">
             {{#if gameModeDouble}}
             <img src="{{facebookImageUrl selectedPlayerPartnerId "small"}}">
