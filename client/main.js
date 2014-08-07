@@ -67,13 +67,10 @@ Template.main.events({
       // SINGLE MODE
       if (Session.get('gameMode') === 'single') {
         //prevent multiple player selection 
-        if (!Session.get('selectedPlayer')){  
           Session.set("selectedPlayer", this.profile.name);
           Session.set("selectedPlayerId", this.services.facebook.id);
-          $this.css('display', 'none');
-          $this.siblings(".addMatchConfirmation").css("display","block");
-          $this.parent().css('background-color','#FAFAFA');
-        }
+          $('.selected').removeClass('selected');
+          $this.parent().addClass('selected');
       }
 
       // DOUBLE MODE
