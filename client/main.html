@@ -23,7 +23,7 @@
       {{#each users}}
         <div class="user">
           <span class="userName">{{ profile.name}}</span>
-          <img src="{{facebookImageUrl services.facebook.id "large"}}">
+          <span class="picture" style="background-image: url({{facebookImageUrl services.facebook.id "large"}});"></span>
           <a href="#" class="addMatch"></a>
           <a href="#" class="addMatchConfirmation button button-single"> RESERVAR </a>
         </div>
