@@ -14,6 +14,9 @@ Meteor.startup(function() {
   Session.setDefault('gameMode', 'single');
 });
 
+Template.loginButtons.rendered = function() {
+  $('#login-buttons-logout').html('Salir');
+}
 Template.main.users = function() {
   return Meteor.users.find();
 }
