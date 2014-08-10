@@ -11,8 +11,12 @@
 <template name="begin">
  {{#unless currentUser}}
   <div class="firstMessage">
+    {{#if loggingIn}}
+      <img src="spinner.gif">
+    {{else}}
     <h1> Ingresa con Facebook para reservar</h1>
       {{> loginButtons}}
+    {{/if}}
   </div>
   {{/unless}}
   {{#if currentUser}}
