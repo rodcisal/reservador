@@ -1,4 +1,4 @@
-<template name="main">
+ <template name="main">
   <div class="first-layer">
     <div class="head">
       {{#if gameModeDouble}}
@@ -39,7 +39,7 @@
           <span class="player-name"> {{firstPlayer}} {{partnerPlayer}}</span>
           <span class="player-pic">
             <img src="{{facebookImageUrl firstPlayerId "small"}}">
-            {{#if gameModeDouble}}
+            {{#if isDouble type}}
               <img src="{{facebookImageUrl partnerPlayerId "small"}}">
             {{/if}}
           </span>
@@ -57,7 +57,7 @@
           <span class="player-name">{{secondPlayer}} {{selectedPlayerPartner}} </span>
           <span class="player-pic">
             <img src="{{facebookImageUrl secondPlayerId "small"}}">
-            {{#if gameModeDouble}}
+            {{#if isDouble type}}
             <img src="{{facebookImageUrl selectedPlayerPartnerId "small"}}">
             {{/if}}
           </span>

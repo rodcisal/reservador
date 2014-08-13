@@ -8,11 +8,16 @@ UI.registerHelper("facebookImageUrl", function(id, size) {
   return "http://graph.facebook.com/" + id + "/picture/?type="+size;
 });
 
+UI.registerHelper("isDouble", function(type) {
+  return (type === 'double') ? true : false;
+});
+
 Meteor.startup(function() {
   moment.lang("es");
   //single mode by default
   Session.setDefault('gameMode', 'single');
 });
+
 
 Template.loginButtons.rendered = function() {
   $('#login-buttons-logout').html('Salir');
