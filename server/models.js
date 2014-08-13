@@ -1,7 +1,7 @@
 Games = new Meteor.Collection("games");
 
 Meteor.publish("users", function(){
-  return Meteor.users.find();
+  return Meteor.users.find({}, {sort: { "services.facebook.first_name": 1} });
 });
 
 Meteor.publish("gamesList", function(){
