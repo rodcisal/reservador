@@ -42,12 +42,6 @@ Template.main.partnerSelected = function() {
   }
 }
 
-Template.main.rendered = function() {
-  Session.setDefault('firstPlayer', Meteor.user().services.facebook.first_name);
-  Session.setDefault('firstPlayerId', Meteor.user().services.facebook.id);
-}
-
-
 function cleanUser () {
   Session.set('selectedPlayer', undefined);
   $(".user").removeClass('background-color-yellow');
@@ -66,6 +60,8 @@ Template.main.events({
   },
   "click .addMatch" : function(e) {
     e.preventDefault();
+    Session.setDefault('firstPlayer', Meteor.user().services.facebook.first_name);
+    Session.setDefault('firstPlayerId', Meteor.user().services.facebook.id);
     var $this = $(e.target);
     Session.set("firstPlayerId", Meteor.user().services.facebook.id);
     //store userName on Session
